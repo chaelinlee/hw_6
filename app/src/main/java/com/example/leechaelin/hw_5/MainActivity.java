@@ -14,12 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
     ListView list;
-    TextView t1;
     ArrayList<Data> input = new ArrayList<Data>();
-    ArrayAdapter<Data>adapter;
+    Adapter adapter;
 
 
     @Override
@@ -27,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         list = (ListView)findViewById(R.id.listview);
-        t1 = (TextView)findViewById(R.id.tv);
-        adapter = new ArrayAdapter<Data>(this,android.R.layout.simple_list_item_1,input);
+        adapter = new Adapter (this,input);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         input.remove(position);
                         adapter.notifyDataSetChanged();
-                        t1.setText("맛집 리스트( "+input.size()+"개 )");
                         Toast.makeText(getApplicationContext(),"삭제하였습니다 ",Toast.LENGTH_SHORT).show();
 
                     }
@@ -68,8 +68,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        Intent intent = new Intent(this,Main2Activity.class);
-        startActivityForResult(intent,5);
+        if(v.getId()==R.id.add){
+            Intent intent = new Intent(this,Main2Activity.class);
+            startActivityForResult(intent,5);
+        }else if(v.getId()==R.id.name){
+            Collections.sort(input,nameAsc);
+            adapter.notifyDataSetChanged();
+        }
+
 
     }
 
@@ -82,9 +88,16 @@ public class MainActivity extends AppCompatActivity {
                 Data d1 =  data.getParcelableExtra("Data");
                 input.add(d1);
                 adapter.notifyDataSetChanged();
-                t1.setText("맛집 리스트( "+input.size()+"개 )");
 
             }
         }
     }
+
+    Comparator<Data> nameAsc = new Comparator<Data>() {
+        @Override
+        public int compare(Data o1, Data o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
+    };
+
 }

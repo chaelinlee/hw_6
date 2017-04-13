@@ -22,6 +22,12 @@ public class Data implements Parcelable{
         this.category= category;
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+
     public static final Creator<Data>CREATOR = new Creator<Data>() {
         @Override
         public Data createFromParcel(Parcel source) {

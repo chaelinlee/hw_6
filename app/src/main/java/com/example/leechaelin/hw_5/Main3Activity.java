@@ -33,6 +33,7 @@ public class Main3Activity extends AppCompatActivity {
         t6.setText(input.homepage);
         t7.setText(input.enrolldate);
         String pointer = input.category;
+
         if (pointer.equals("1")) {
             i.setImageResource(R.drawable.chicken);
         } else if (pointer.equals("2")) {

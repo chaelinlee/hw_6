@@ -7,31 +7,42 @@
     android:orientation="vertical"
     tools:context="com.example.leechaelin.hw_5.MainActivity">
     <LinearLayout
+        android:orientation="horizontal"
         android:padding="5dp"
-        android:background="#ffe5e5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_margin="8dp"
-            android:layout_width="40dp"
-            android:layout_height="33dp"
-            android:src="@drawable/potato" />
-        <TextView
-            android:id="@+id/tv"
-            android:textStyle="bold"
-            android:layout_weight="2"
-            android:textSize="20dp"
-            android:textColor="#3276a0"
+        <Button
+            android:onClick="myclick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="맛집 리스트(0개)" />
+            android:text="맛집추가 "
+            android:id="@+id/add"/>
         <Button
-            android:onClick="onClick"
-            android:layout_weight="1"
-            android:text="맛집추가"
+            android:onClick="myclick"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="아름순 "
+            android:id="@+id/name"/>
+        <Button
+            android:onClick="myclick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종류별 "
+            android:id="@+id/cate_btn"/>
+        <Button
+            android:onClick="myclick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선택 "
+            android:id="@+id/select"/>
     </LinearLayout>
+
+   <EditText
+       android:background="#ffe5e5"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="검색할 맛집을 넣으세요 ."
+       android:id="@+id/edittext"/>
 
     <ListView
         android:id="@+id/listview"
