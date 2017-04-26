@@ -10,6 +10,7 @@ import android.os.Parcelable;
 public class Data implements Parcelable{
     String name,phonenum,homepage,enrolldate,category;
     String menu1,menu2,menu3;
+    int isCheck = 0;
 
     public Data(String name,String phonenum,String menu1,String menu2,String menu3,String homepage,String enrolldate,String category){
         this.name = name;
@@ -26,8 +27,12 @@ public class Data implements Parcelable{
     public String getName() {
         return name;
     }
-
-
+    public void setIsCheck(int isCheck){
+        this.isCheck=isCheck;
+    }
+    public int getIsCheck(){
+        return isCheck;
+    }
     public static final Creator<Data>CREATOR = new Creator<Data>() {
         @Override
         public Data createFromParcel(Parcel source) {
