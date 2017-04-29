@@ -46,6 +46,10 @@ public class Adapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+    public void updatedata(ArrayList<Data> datalist){
+        find.clear();
+        find.addAll(datalist);
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -123,14 +127,14 @@ public class Adapter extends BaseAdapter {
 
     public void filter(String search) {
         search = search.toLowerCase(Locale.getDefault());
-        find.clear();
+        input.clear();
 
         if(search.length()==0){
-            find.addAll(input);
+            input.addAll(find);
         }else{
-            for(Data d:input){
+            for(Data d:find){
                 if(d.getName().toLowerCase(Locale.getDefault()).contains(search)){
-                    find.add(d);
+                    input.add(d);
                 }
             }
         }

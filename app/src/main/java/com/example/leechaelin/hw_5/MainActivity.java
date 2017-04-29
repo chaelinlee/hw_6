@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivityForResult(intent,5);
+                adapter.updatedata(filteredinput);
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
@@ -117,15 +118,19 @@ public class MainActivity extends AppCompatActivity {
                                             for(int j=input.size()-1;j>=0;j--){
                                                 if(input.get(j).equals(filteredinput.get(i))){
                                                     input.remove(j);
+                                                    Log.d("DEBUG", "제거");
                                                     break;
                                                 }
                                             }
+                                            filteredinput.remove(i);
+                                            adapter.updatedata(filteredinput);
                                         }
-                                        filteredinput.remove(i);
+
                                     }
                                     deleting = false;
                                     b4.setText("선택");
                                     adapter.setDel(false);
+                                    adapter.updatedata(filteredinput);
                                     adapter.notifyDataSetChanged();
                                 }
                             }).show();
@@ -149,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode==RESULT_OK){
                 Data d1 =  data.getParcelableExtra("Data");
                 filteredinput.add(d1);
+                adapter.updatedata(filteredinput);
                 adapter.notifyDataSetChanged();
 
             }
